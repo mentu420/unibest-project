@@ -62,7 +62,10 @@
     "build:quickapp-webview-huawei": "uni build -p quickapp-webview-huawei",
     "build:quickapp-webview-union": "uni build -p quickapp-webview-union",
     "prepare": "node ./shell/postinstall.js & git init && husky install ",
-    "type-check": "vue-tsc --noEmit"
+    "type-check": "vue-tsc --noEmit",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "lint-staged": {
     "**/*.{html,vue,ts,cjs,json,md}": [
@@ -153,6 +156,7 @@
     "unplugin-auto-import": "^0.17.2",
     "vite": "4.3.5",
     "vite-plugin-restart": "^0.4.0",
+    "vitepress": "^1.1.4",
     "vue-i18n": "^9.11.0",
     "vue-tsc": "^1.8.25"
   }

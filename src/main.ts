@@ -4,6 +4,8 @@ import store from './store'
 import i18n from './locale/index'
 import { routeInterceptor, requestInterceptor, prototypeInterceptor } from './interceptors'
 import 'virtual:uno.css'
+import '@unocss/reset/tailwind.css'
+import 'uno.css'
 import '@/style/index.scss'
 
 export function createApp() {

@@ -13,6 +13,7 @@ import { presetApplet, presetRemRpx, transformerAttributify } from 'unocss-apple
 
 // @see https://unocss.dev/presets/legacy-compat
 import { presetLegacyCompat } from '@unocss/preset-legacy-compat'
+import { presetDaisy } from 'unocss-preset-daisy'
 
 const isMp = process.env?.UNI_PLATFORM?.startsWith('mp') ?? false
 
@@ -31,6 +32,7 @@ if (isMp) {
 export default defineConfig({
   presets: [
     ...presets,
+    presetDaisy(),
     // 支持图标，需要搭配图标库，eg: @iconify-json/carbon, 使用 `<button class="i-carbon-sun dark:i-carbon-moon" />`
     presetIcons({
       scale: 1.2,

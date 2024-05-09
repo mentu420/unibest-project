@@ -40,10 +40,13 @@
 
 <script lang="ts" setup>
 import PLATFORM from '@/utils/platform'
+import { getTaskList } from '@/apis/home'
 
 defineOptions({
   name: 'Home',
 })
+
+getTaskList({ platform: 1, task_level: 1 })
 
 // 获取屏幕边界到安全区域距离
 const { safeAreaInsets } = uni.getSystemInfoSync()

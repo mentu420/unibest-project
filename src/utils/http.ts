@@ -2,6 +2,7 @@ import { CustomRequestOptions } from '@/interceptors/request'
 
 export const http = <T>(options: CustomRequestOptions) => {
   // 1. 返回 Promise 对象
+  console.log('http', options)
   return new Promise<IResData<T>>((resolve, reject) => {
     uni.request({
       ...options,
@@ -11,6 +12,7 @@ export const http = <T>(options: CustomRequestOptions) => {
       // #endif
       // 响应成功
       success(res) {
+        console.log('success', res)
         // 状态码 2xx，参考 axios 的设计
         if (res.statusCode >= 200 && res.statusCode < 300) {
           // 2.1 提取核心数据 res.data
@@ -32,6 +34,7 @@ export const http = <T>(options: CustomRequestOptions) => {
       },
       // 响应失败
       fail(err) {
+        console.log('err', err)
         uni.showToast({
           icon: 'none',
           title: '网络错误，换个网络试试',

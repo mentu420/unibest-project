@@ -12,3 +12,4 @@ declare const __UNI_PLATFORM__:
   | 'quickapp-webview'
   | 'quickapp-webview-huawei'
   | 'quickapp-webview-union'
+  | 'Telegram'

@@ -34,6 +34,37 @@
     <button class="btn btn-accent">Accent</button>
     <button class="btn btn-ghost">Ghost</button>
     <button class="btn btn-link">Link</button>
+    <wd-button>主要按钮</wd-button>
+    <wd-button type="success">成功按钮</wd-button>
+    <wd-button type="info">信息按钮</wd-button>
+    <wd-button type="warning">警告按钮</wd-button>
+    <wd-button type="error">
+      <span
+        :class="
+          [
+            'i-mdi-thumb-up',
+            'i-mdi-comment-processing',
+            'i-mdi-share-all',
+            'i-mdi-heart-multiple',
+          ][3]
+        "
+      ></span>
+    </wd-button>
+
+    <wd-tabs v-model="tab">
+      <block v-for="item in 4" :key="item">
+        <wd-tab :title="`标签${item}`">
+          <view class="content">内容{{ item }}</view>
+        </wd-tab>
+      </block>
+    </wd-tabs>
+    <wd-swiper
+      :list="swiperList"
+      autoplay
+      :current="0"
+      @click="handleClick"
+      @change="onChange"
+    ></wd-swiper>
   </view>
   <!-- <tabbar /> -->
 </template>
@@ -45,15 +76,26 @@ import { getTaskList } from '@/apis/home'
 defineOptions({
   name: 'Home',
 })
-
-getTaskList({ platform: 1, task_level: 1 })
-
+const tab = ref<number>(0)
 // 获取屏幕边界到安全区域距离
 const { safeAreaInsets } = uni.getSystemInfoSync()
 const author = ref('菲鸽')
 const description = ref(
   'unibest 是一个集成了多种工具和技术的 uniapp 开发模板，由 uniapp + Vue3 + Ts + Vite4 + UnoCss + UniUI + VSCode 构建，模板具有代码提示、自动格式化、统一配置、代码片段等功能，并内置了许多常用的基本组件和基本功能，让你编写 uniapp 拥有 best 体验。',
 )
+const swiperList = ref([
+  'https://unpkg.com/wot-design-uni-assets/redpanda.jpg',
+  'https://unpkg.com/wot-design-uni-assets/capybara.jpg',
+  'https://unpkg.com/wot-design-uni-assets/panda.jpg',
+  'https://img.yzcdn.cn/vant/cat.jpeg',
+  'https://unpkg.com/wot-design-uni-assets/meng.jpg',
+])
+function handleClick(e) {
+  console.log(e)
+}
+function onChange(e) {
+  console.log(e)
+}
 
 onLoad(() => {
   console.log(author)

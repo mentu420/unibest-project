@@ -50,14 +50,7 @@ export const requestToken = mergingStep(async () => {
   return data
 })
 
-export const getSign = async (withToken = true) => {
-  const Lang = i18n.global.locale.value
-  const result = { Version: 'v1', Lang, Authorization: '' }
-
-  if (withToken) {
-    const token = await requestToken()
-    result.Authorization = `Bearer ${token}`
-  }
-
-  return result
+export const getSign = async () => {
+  const { token } = getStorage(storage.token)
+  return `Bearer ${token}`
 }

@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import qs from 'qs'
-import { useUserStore } from '@/store'
 import { platform } from '@/utils/platform'
+import i18n from '@/locale/'
 import { getSign } from '@/apis/auth'
 
 export type CustomRequestOptions = UniApp.RequestOptions & {
@@ -9,6 +9,7 @@ export type CustomRequestOptions = UniApp.RequestOptions & {
   /** 出错时是否隐藏错误提示 */
   hideErrorToast?: boolean
   withToken?: boolean
+  withRetryCount?: number
 } & IUniUploadFileOptions // 添加uni.uploadFile参数类型
 
 // 请求基准地址
@@ -17,8 +18,7 @@ const baseUrl = import.meta.env.VITE_SERVER_BASEURL
 // 拦截器配置
 const httpInterceptor = {
   // 拦截前触发
-  async invoke(options: CustomRequestOptions) {
-    console.log('invoke', options)
+  invoke(options: CustomRequestOptions) {
     // 接口请求支持通过 query 参数配置 queryString
     if (options.query) {
       const queryStr = qs.stringify(options.query)
@@ -35,14 +35,15 @@ const httpInterceptor = {
     }
     // 1. 请求超时
     options.timeout = 10000 // 10s
-    const { withToken = true } = options
-    // 3. 添加 token 请求头标识
+    // 添加请固定求头
+    const Lang = i18n.global.locale
     options.header = {
-      platform,
       ...options.header,
-      ...(await getSign(withToken)),
+      platform,
+      Version: 'v1',
+      Lang,
     }
-    console.log('options', options)
+    // 请求头添加参数
   },
 }
 

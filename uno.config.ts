@@ -39,7 +39,7 @@ export default defineConfig({
       warn: true,
       extraProperties: {
         display: 'inline-block',
-        'vertical-align': 'middle',
+        'vertical-align': 'mid',
       },
     }),
     // 将颜色函数 (rgb()和hsl()) 从空格分隔转换为逗号分隔，更好的兼容性app端，example：

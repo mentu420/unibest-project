@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/unibeset-vitepress-blog/',
   title: 'unibeset-vitepress-blog',
   description: 'A VitePress Site',
   themeConfig: {
@@ -22,23 +23,5 @@ export default defineConfig({
     ],
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }],
-  },
-  locales: {
-    root: {
-      label: 'English',
-      lang: 'en',
-    },
-    zn: {
-      label: '简体中文',
-      lang: 'zh-Hans',
-      themeConfig: {
-        nav: [
-          {
-            text: '首页',
-            link: '/zh/',
-          },
-        ],
-      },
-    },
   },
 })

@@ -2,7 +2,6 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: '/unibeset-vitepress-blog/',
   title: 'unibeset-vitepress-blog',
   description: 'A VitePress Site',
   themeConfig: {

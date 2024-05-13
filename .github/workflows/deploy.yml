@@ -41,7 +41,7 @@ jobs:
         with:
           node-version: 20
           cache: pnpm # 或 pnpm / yarn
-          cache-dependency-path: ./unibest-vitepress-blog/pnpm-lock.yaml
+          cache-dependency-path: ./server/pnpm-lock.yaml
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Install dependencies

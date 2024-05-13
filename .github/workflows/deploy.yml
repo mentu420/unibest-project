@@ -9,7 +9,7 @@ on:
     branches: [master]
 
   # 允许你从 Actions 选项卡手动运行此工作流程
-  workflow_dispatch:
+  workflow_dispatch: './server/'
 
 # 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages
 permissions:
@@ -39,13 +39,15 @@ jobs:
         with:
           node-version: 20
           cache: npm # 或 pnpm / yarn
-          cache-dependency-path: '**/package-lock.json'
+          cache-dependency-path: './server/package-lock.json'
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Install dependencies
         run: npm ci # 或 pnpm install / yarn install / bun install
+        working-directory: './server'
       - name: Build with VitePress
         run: npm run docs:build # 或 pnpm docs:build / yarn docs:build / bun run docs:build
+        working-directory: './server'
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

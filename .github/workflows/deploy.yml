@@ -26,10 +26,10 @@ concurrency:
 jobs:
   # 构建工作
   build:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./server/
+    #指定服务器的运行环境：最新版本ubuntu
+    runs-on:
+      ubuntu-latest
+      # 使用actions/checkout@v4 库拉取代码到 ubuntu 上
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -37,20 +37,31 @@ jobs:
           fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
       # - uses: pnpm/action-setup@v3 # 如果使用 pnpm，请取消注释
       # - uses: oven-sh/setup-bun@v1 # 如果使用 Bun，请取消注释
+
+      # 安装 pnpm
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      # 设置node的版本
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm # 或 pnpm / yarn
-          cache-dependency-path: './server/package-lock.json'
+          cache: pnpm # 或 pnpm / yarn
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
+      #安装依赖
       - name: Install dependencies
-        run: npm ci # 或 pnpm install / yarn install / bun install
-        working-directory: './server'
+        # run: npm ci # 或 pnpm install / yarn install / bun install
+        run: pnpm install
+
+      #打包
       - name: Build with VitePress
-        run: npm run docs:build # 或 pnpm docs:build / yarn docs:build / bun run docs:build
-        working-directory: './server'
+        run: pnpm docs:build # 或 pnpm docs:build / yarn docs:build / bun run docs:build
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -48,3 +48,4 @@ package-lock.json
 # git rm -r --cached .  ## 针对所有文件
 
 docs/.vitepress/cache/*
+docs/.vitepress/dist/*
